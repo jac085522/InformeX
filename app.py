@@ -9,7 +9,7 @@ RUTA_PLANTILLA = os.path.join(BASE_DIR, 'plantilla.docx')
 
 @app.route('/')
 def formulario():
-    return render_template('e_vehiculo')
+    return render_template('e_vehiculo.html')
 
 @app.route('/generar', methods=['POST'])
 def generar():
