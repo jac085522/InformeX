@@ -1,0 +1,8 @@
+# render.yaml
+services:
+  - type: web
+    name: informe-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    plan: free
