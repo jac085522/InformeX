@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulario de Vehículo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+      background: #f7f7f7;
+    }
+    form {
+      background: white;
+      padding: 1.5em;
+      border-radius: 8px;
+      max-width: 400px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      padding: 0.4em;
+      margin-top: 0.3em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+    }
+    select {
+      width: 100%;
+      padding: 0.4em;
+      margin-top: 0.3em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1.5em;
+      padding: 0.7em 1.5em;
+      font-size: 1em;
+      background-color: #2d89ef;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1b5fa7;
+    }
+  </style>
+</head>
+<body>
+
+<form id="vehiculoForm">
+  <label for="gradoComandante">Grado del comandante</label>
+  <select id="gradoComandante" name="gradoComandante">
+    <option value="Subteniente">Subteniente</option>
+    <option value="Teniente">Teniente</option>
+    <option value="Capitán">Capitán</option>
+    <option value="Mayor">Mayor</option>
+    <option value="Teniente Coronel">Teniente Coronel</option>
+    <option value="Coronel">Coronel</option>
+  </select>
+
+  <label for="fecha">Fecha</label>
+  <input type="date" id="fecha" name="fecha" />
+
+  <label for="hora">Hora</label>
+  <input type="text" id="hora" name="hora" />
+
+  <label for="placaReal">Placa del vehículo real</label>
+  <input type="text" id="placaReal" name="placaReal" maxlength="6" />
+
+  <label for="marca">Marca del vehículo</label>
+  <input type="text" id="marca" name="marca" />
+
+  <label for="linea">Línea del vehículo</label>
+  <input type="text" id="linea" name="linea" />
+
+  <label for="color">Color del vehículo</label>
+  <input type="text" id="color" name="color" />
+
+  <label for="clase">Clase de vehículo</label>
+  <select id="clase" name="clase">
+    <option value="Automóvil">Automóvil</option>
+    <option value="Motocicleta">Motocicleta</option>
+  </select>
+
+  <label for="tipoServicio">Tipo de servicio del vehículo</label>
+  <select id="tipoServicio" name="tipoServicio">
+    <option value="Público">Público</option>
+    <option value="Particular">Particular</option>
+  </select>
+
+  <label for="placaErronea">Placa del vehículo errónea</label>
+  <input type="text" id="placaErronea" name="placaErronea" maxlength="6" />
+
+  <button type="submit">Generar</button>
+</form>
+
+<script>
+// Establece la fecha actual
+const fechaInput = document.getElementById('fecha');
+const hoy = new Date();
+const yyyy = hoy.getFullYear();
+const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+const dd = String(hoy.getDate()).padStart(2, '0');
+fechaInput.value = `${yyyy}-${mm}-${dd}`;
+
+// Genera una hora aleatoria en formato HH:MM
+function generarHoraAleatoria() {
+  const horas = String(Math.floor(Math.random() * 24)).padStart(2, '0');
+  const minutos = String(Math.floor(Math.random() * 60)).padStart(2, '0');
+  return `${horas}:${minutos}`;
+}
+document.getElementById('hora').value = generarHoraAleatoria();
+
+// Fuerza las entradas de texto a mayúsculas
+document.querySelectorAll('input[type="text"]').forEach(input => {
+  input.addEventListener('input', () => {
+    input.value = input.value.toUpperCase();
+  });
+});
+
+// Acción del botón
+document.getElementById('vehiculoForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('¡Formulario generado!');
+});
+</script>
+
+</body>
+</html>

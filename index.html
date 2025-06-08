@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Canvass by Free Css Templates</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+  <h1><a href="#">Canvass</a></h1>
+  <p>By <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+</div>
+<!-- end header -->
+<div id="page">
+  <div id="content">
+   
+  <!-- end content -->
+  <div id="sidebar">
+    <ul>
+      <li id="menu" class="bg6">
+        <h2 class="bg1">Menu</h2>
+        <ul>
+          <li class="first">
+  <a href="#" title="">Error de Digitacion</a>
+  <ul class="submenu">
+    <li><a href="#" data-url="e_vehiculo.html">Vehiculos</a></li>
+    <li><a href="#">Personas</a></li>
+	<li><a href="#">Imei</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#" title="">Procesos Terminados</a>
+  <ul class="submenu">
+    <li><a href="#">Vehiculos (Fiscalia)</a></li>
+    <li><a href="#">Personas (Fiscalia)</a></li>
+	<li><a href="#">Vehiculos (Embargos)</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#" title="">Imei Positivos</a>
+  <ul class="submenu">
+    <li><a href="#">Imei No registrado</a></li>
+    <li><a href="#">Imei Duplicado</a></li>
+  </ul>
+</li>
+<li>
+  <a href="#" title="">Dejados a disposición</a>
+  <ul class="submenu">
+    <li><a href="#">Imei - Positivo</a></li>
+    <li><a href="#">Vehiculo - Positivo</a></li>
+	<li><a href="#">Persona - Positivo</a></li>
+  </ul>
+</li>
+
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!-- end sidebar -->
+  <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end page -->
+<div id="footer">
+  <p id="legal"><strong>Canvass</strong> &copy; 2007. Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+  <p id="links"> <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a></p>
+</div>
+<!-- end footer -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll("#menu > ul > li > a");
+
+    items.forEach(item => {
+      item.addEventListener("click", function (e) {
+        e.preventDefault();
+        const submenu = this.nextElementSibling;
+        if (submenu && submenu.classList.contains("submenu")) {
+          submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const submenuLinks = document.querySelectorAll(".submenu a");
+    const contentDiv = document.getElementById("content");
+
+    submenuLinks.forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault(); // 👈 Esto evita que se pierda el menú
+        const url = this.getAttribute("data-url");
+
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("No se pudo cargar el archivo: " + url);
+            }
+            return response.text();
+          })
+          .then(html => {
+            contentDiv.innerHTML = html;
+          })
+          .catch(error => {
+            contentDiv.innerHTML = `<p style="color:red;">Error al cargar el contenido: ${error.message}</p>`;
+          });
+      });
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
