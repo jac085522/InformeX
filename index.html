@@ -1,80 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Canvass by Free Css Templates</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="default.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <title>InformeX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="default.css" rel="stylesheet" />
 </head>
 <body>
+
 <div id="header">
-  <h1><a href="#">Canvass</a></h1>
-  <p>By <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+  <h1><a href="#">InformeX</a></h1>
+  <p>Formulario de generación automática de relato</p>
 </div>
-<!-- end header -->
+
 <div id="page">
   <div id="content">
-   
-  <!-- end content -->
+    <p>Seleccione una opción del menú para comenzar.</p>
+  </div>
+
   <div id="sidebar">
     <ul>
       <li id="menu" class="bg6">
         <h2 class="bg1">Menu</h2>
         <ul>
           <li class="first">
-  <a href="#" title="">Error de Digitacion</a>
-  <ul class="submenu">
-    <li><a href="#" data-url="e_vehiculo.html">Vehiculos</a></li>
-    <li><a href="#">Personas</a></li>
-	<li><a href="#">Imei</a></li>
-  </ul>
-</li>
-<li>
-  <a href="#" title="">Procesos Terminados</a>
-  <ul class="submenu">
-    <li><a href="#">Vehiculos (Fiscalia)</a></li>
-    <li><a href="#">Personas (Fiscalia)</a></li>
-	<li><a href="#">Vehiculos (Embargos)</a></li>
-  </ul>
-</li>
-<li>
-  <a href="#" title="">Imei Positivos</a>
-  <ul class="submenu">
-    <li><a href="#">Imei No registrado</a></li>
-    <li><a href="#">Imei Duplicado</a></li>
-  </ul>
-</li>
-<li>
-  <a href="#" title="">Dejados a disposición</a>
-  <ul class="submenu">
-    <li><a href="#">Imei - Positivo</a></li>
-    <li><a href="#">Vehiculo - Positivo</a></li>
-	<li><a href="#">Persona - Positivo</a></li>
-  </ul>
-</li>
-
-
+            <a href="#">Error de Digitacion</a>
+            <ul class="submenu">
+              <li><a href="#" data-url="e_vehiculo.html">Vehículos</a></li>
+              <li><a href="#">Personas</a></li>
+              <li><a href="#">IMEI</a></li>
+            </ul>
+          </li>
+          <!-- Otros menús opcionales -->
         </ul>
       </li>
     </ul>
   </div>
-  <!-- end sidebar -->
-  <div style="clear: both;">&nbsp;</div>
-</div>
-<!-- end page -->
-<div id="footer">
-  <p id="legal"><strong>Canvass</strong> &copy; 2007. Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
-  <p id="links"> <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a></p>
-</div>
-<!-- end footer -->
 
+  <div style="clear: both;"></div>
+</div>
+
+<div id="footer">
+  <p><strong>InformeX</strong> &copy; 2025</p>
+</div>
+
+<!-- ✅ Scripts -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const items = document.querySelectorAll("#menu > ul > li > a");
-
-    items.forEach(item => {
+    // Menú desplegable
+    document.querySelectorAll("#menu > ul > li > a").forEach(item => {
       item.addEventListener("click", function (e) {
         e.preventDefault();
         const submenu = this.nextElementSibling;
@@ -83,28 +57,22 @@
         }
       });
     });
-  });
-</script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const submenuLinks = document.querySelectorAll(".submenu a");
-    const contentDiv = document.getElementById("content");
-
-    submenuLinks.forEach(link => {
+    // Carga dinámica del contenido
+    document.querySelectorAll(".submenu a").forEach(link => {
       link.addEventListener("click", function (e) {
-        e.preventDefault(); // 👈 Esto evita que se pierda el menú
+        e.preventDefault();
         const url = this.getAttribute("data-url");
+        const contentDiv = document.getElementById("content");
 
         fetch(url)
           .then(response => {
-            if (!response.ok) {
-              throw new Error("No se pudo cargar el archivo: " + url);
-            }
+            if (!response.ok) throw new Error("No se pudo cargar el archivo: " + url);
             return response.text();
           })
           .then(html => {
             contentDiv.innerHTML = html;
+            if (url === "e_vehiculo.html") cargarLogicaRelato();
           })
           .catch(error => {
             contentDiv.innerHTML = `<p style="color:red;">Error al cargar el contenido: ${error.message}</p>`;
@@ -112,9 +80,54 @@
       });
     });
   });
+
+  // ✅ Lógica del formulario dinámico
+  function cargarLogicaRelato() {
+    setTimeout(() => {
+      const form = document.getElementById("vehiculoForm");
+      if (!form) return;
+
+      const fechaInput = document.getElementById('fecha');
+      const hoy = new Date();
+      const yyyy = hoy.getFullYear();
+      const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+      const dd = String(hoy.getDate()).padStart(2, '0');
+      fechaInput.value = `${yyyy}-${mm}-${dd}`;
+
+      document.getElementById('hora').value = `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('input', () => {
+          input.value = input.value.toUpperCase();
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const gradoComandante = document.getElementById("gradoComandante").value;
+        const fecha = document.getElementById("fecha").value;
+        const hora = document.getElementById("hora").value;
+        const placaReal = document.getElementById("placaReal").value;
+        const marca = document.getElementById("marca").value;
+        const linea = document.getElementById("linea").value;
+        const colorv = document.getElementById("color").value;
+        const clase = document.getElementById("clase").value;
+        const tipoServicio = document.getElementById("tipoServicio").value;
+        const placaErronea = document.getElementById("placaErronea").value;
+
+        const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
+dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
+clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes 
+a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.
+
+Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
+
+        document.getElementById("relat").value = relato;
+      });
+
+    }, 100);
+  }
 </script>
-
-
 
 </body>
 </html>
