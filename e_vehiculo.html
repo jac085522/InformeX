@@ -103,6 +103,8 @@
   <button type="submit">Generar</button>
 </form>
 
+
+
 <script>
 // Establece la fecha actual
 const fechaInput = document.getElementById('fecha');
@@ -127,12 +129,38 @@ document.querySelectorAll('input[type="text"]').forEach(input => {
   });
 });
 
+document.getElementById("vehiculoForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+      const placaReal = document.getElementById("placaReal").value;
+	  const marca = document.getElementById("marca").value;
+	  const linea = document.getElementById("linea").value;
+	  const colorv = document.getElementById("color").value;
+	  const clase = document.getElementById("clase").value;
+	  const placaErronea = document.getElementById("placaErronea").value;
+	  const tipoServicio = document.getElementById("tipoServicio").value;
+	  const gradoComandante = document.getElementById("gradoComandante").value;
+
+      const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
+	  dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
+	  clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes 
+	  a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.
+	  
+	  Lo anterior para conocimiento de mi ${gradoComandante} y demas fines estime pertinentes.`;
+
+      document.getElementById("relat").innerText = relato;
+    });
+
+
 // Acción del botón generar
 document.getElementById('vehiculoForm').addEventListener('submit', function(e){
   e.preventDefault();
   alert('¡Formulario generado!');
 });
 </script>
+
+<p id="relat"></p>
 
 </body>
 </html>
