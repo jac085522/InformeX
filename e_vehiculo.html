@@ -1,48 +1,50 @@
-<form id="vehiculoForm">
-  <label for="gradoComandante">Grado del comandante</label><br>
-  <select id="gradoComandante" name="gradoComandante"><br>
-    <option value="Subteniente">Subteniente</option>
-    <option value="Teniente">Teniente</option>
-    <option value="Capitán">Capitán</option>
-    <option value="Mayor">Mayor</option>
-    <option value="Teniente Coronel">Teniente Coronel</option>
-    <option value="Coronel">Coronel</option>
-  </select>
+<div style="max-width: 500px; margin: 0 auto;">
+  <form id="vehiculoForm" style="display: flex; flex-direction: column; gap: 12px;">
+    <label for="gradoComandante">Grado del comandante</label>
+    <select id="gradoComandante" name="gradoComandante">
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
 
-  <label for="fecha">Fecha</label><br>
-  <input type="date" id="fecha" name="fecha" /><br>
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" name="fecha" />
 
-  <label for="hora">Hora</label>
-  <input type="text" id="hora" name="hora" />
+    <label for="hora">Hora</label>
+    <input type="text" id="hora" name="hora" />
 
-  <label for="placaReal">Placa del vehículo real</label>
-  <input type="text" id="placaReal" name="placaReal" maxlength="6" />
+    <label for="placaReal">Placa del vehículo real</label>
+    <input type="text" id="placaReal" name="placaReal" maxlength="6" />
 
-  <label for="marca">Marca del vehículo</label>
-  <input type="text" id="marca" name="marca" />
+    <label for="marca">Marca del vehículo</label>
+    <input type="text" id="marca" name="marca" />
 
-  <label for="linea">Línea del vehículo</label>
-  <input type="text" id="linea" name="linea" />
+    <label for="linea">Línea del vehículo</label>
+    <input type="text" id="linea" name="linea" />
 
-  <label for="color">Color del vehículo</label>
-  <input type="text" id="color" name="color" />
+    <label for="color">Color del vehículo</label>
+    <input type="text" id="color" name="color" />
 
-  <label for="clase">Clase de vehículo</label>
-  <select id="clase" name="clase">
-    <option value="Automóvil">Automóvil</option>
-    <option value="Motocicleta">Motocicleta</option>
-  </select>
+    <label for="clase">Clase de vehículo</label>
+    <select id="clase" name="clase">
+      <option value="Automóvil">Automóvil</option>
+      <option value="Motocicleta">Motocicleta</option>
+    </select>
 
-  <label for="tipoServicio">Tipo de servicio del vehículo</label>
-  <select id="tipoServicio" name="tipoServicio">
-    <option value="Público">Público</option>
-    <option value="Particular">Particular</option>
-  </select>
+    <label for="tipoServicio">Tipo de servicio del vehículo</label>
+    <select id="tipoServicio" name="tipoServicio">
+      <option value="Público">Público</option>
+      <option value="Particular">Particular</option>
+    </select>
 
-  <label for="placaErronea">Placa del vehículo errónea</label>
-  <input type="text" id="placaErronea" name="placaErronea" maxlength="6" />
+    <label for="placaErronea">Placa del vehículo errónea</label>
+    <input type="text" id="placaErronea" name="placaErronea" maxlength="6" />
 
-  <button type="submit">Generar</button>
-</form>
+    <button type="submit" style="margin-top: 1em;">Generar</button>
+  </form>
 
-<textarea id="relat" rows="8" cols="60" readonly></textarea>
+  <textarea id="relat" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%;"></textarea>
+</div>
