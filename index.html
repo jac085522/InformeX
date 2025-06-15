@@ -32,18 +32,19 @@
             </ul>
           </li>
           <!-- Otros menús opcionales -->
-		  
-		  <ul>
-              <li class="first">
-			  <a href="#">Procesos Terminados</a>
-			  <ul class="submenu">
-              <li><a href="#">Vehiculos (Fiscalia)</a></li>
-              <li><a href="#">Personas (Fiscalia)</a></li>
-              <li><a href="#">Vehiculos (Embargos)</a></li>
+          <ul>
+          <li class="first">
+            <a href="#">Aclaratorio</a>
+            <ul class="submenu">
+              <li><a href="#" data-url="e_vehiculo.html">Vehículos</a></li>
+              <li><a href="#">Personas</a></li>
+              <li><a href="#">IMEI</a></li>
             </ul>
-			</li>
-			</ul>
-		  <!-- Otros menús opcionales -->
+          </li>
+          </ul>
+          <!-- Otros menús opcionales -->
+
+
         </ul>
       </li>
     </ul>
@@ -118,6 +119,8 @@
         event.preventDefault();
         const gradoComandante = document.getElementById("gradoComandante").value;
         const fecha = document.getElementById("fecha").value;
+        const [año, mes, dia] = fecha.split("-");
+        const fechaF = `${dia}-${mes}-${año}`;
         const hora = document.getElementById("hora").value;
         const placaReal = document.getElementById("placaReal").value;
         const marca = document.getElementById("marca").value;
@@ -128,7 +131,7 @@
         const placaErronea = document.getElementById("placaErronea").value;
 
         const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
-dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
+dispositivo PDA el día ${fechaF} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
 clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes 
 a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.
 
