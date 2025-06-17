@@ -1,0 +1,47 @@
+<div style="max-width: 500px; margin: 0 auto;">
+  <form id="epersonasForm" style="display: flex; flex-direction: column; gap: 12px;">
+    <label for="gradoComandante">Grado del comandante</label>
+    <select id="gradoComandanteep" name="gradoComandanteep">
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
+
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fechaep" name="fechaep" />
+
+    <label for="hora">Hora</label>
+    <input type="text" id="horaep" name="horaep" />
+	
+	<label for="t_documento">Tipo de Documento</label>
+    <select id="t_documento" name="t_documento">
+      <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
+      <option value="Cedula de Extranjeria">Cedula de Extranjeria</option>
+	  <option value="Documento Pais de Origen">Documento Pais de Origen</option>
+	  <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+	  <option value="Pasaporte">Pasaporte</option>
+    </select>
+
+    <label for="cedulaReal">Nº de Documento o Cedula de Ciudadania Real</label>
+    <input type="text" id="cedulaReal" name="cedulaReal" maxlength="6" />
+
+    <label for="nombre_ciudadano">Nombre del Ciudadano</label>
+    <input type="text" id="nombre_ciudadano" name="nombre_ciudadano" />
+
+    <label for="f_nacimiento">Fecha Nacimiento</label>
+    <input type="text" id="f_nacimiento" name="f_nacimiento" />
+
+    <label for="lugar_nac">Lugar de Nacimiento</label>
+    <input type="text" id="lugar_nac" name="lugar_nac" />    
+
+    <label for="cedulaErronea">Nº de Documento o Cedula de Ciudadania Errónea</label>
+    <input type="text" id="cedulaErronea" name="cedulaErronea" maxlength="6" />
+
+    <button type="submit" style="margin-top: 1em;">Generar</button>
+  </form>
+
+  <textarea id="relatp" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%; resize: none;"></textarea>
+</div>

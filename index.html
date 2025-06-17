@@ -27,7 +27,7 @@
             <a href="#">Error de Digitacion</a>
             <ul class="submenu">
               <li><a href="#" data-url="e_vehiculo.html">Vehículos</a></li>
-              <li><a href="#">Personas</a></li>
+              <li><a href="#" data-url="e_personas.html">Personas</a></li>
               <li><a href="#">IMEI</a></li>
             </ul>
           </li>
@@ -94,7 +94,7 @@
       });
     });
 
-    // Carga dinámica del contenido
+    // Carga dinámica del contenido vehiculos
     document.querySelectorAll(".submenu a").forEach(link => {
       link.addEventListener("click", function (e) {
         e.preventDefault();
@@ -115,6 +115,31 @@
           });
       });
     });
+	
+	
+	// Carga dinámica del contenido personas
+    document.querySelectorAll(".submenu a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const url = this.getAttribute("data-url");
+        const contentDiv = document.getElementById("content");
+
+        fetch(url)
+          .then(response => {
+            if (!response.ok) throw new Error("No se pudo cargar el archivo: " + url);
+            return response.text();
+          })
+          .then(html => {
+            contentDiv.innerHTML = html;
+            if (url === "e_personas.html") cargarLogicaRelatoepersonas();
+          })
+          .catch(error => {
+            contentDiv.innerHTML = `<p style="color:red;">Error al cargar el contenido: ${error.message}</p>`;
+          });
+      });
+    });
+	
+	
   });
 
   // ✅ Lógica del formulario dinámico
@@ -165,6 +190,57 @@ Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime per
 
     }, 100);
   }
+  
+  
+    // ✅ Lógica del formulario dinámico e_personas
+  function cargarLogicaRelatoepersonas() {
+    setTimeout(() => {
+      const form = document.getElementById("epersonasForm");
+      if (!form) return;
+
+      const fechaInput = document.getElementById('fechaep');
+      const hoy = new Date();
+      const yyyy = hoy.getFullYear();
+      const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+      const dd = String(hoy.getDate()).padStart(2, '0');
+      fechaInput.value = `${yyyy}-${mm}-${dd}`;
+
+      document.getElementById('horaep').value = `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('input', () => {
+          input.value = input.value.toUpperCase();
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const gradoComandante = document.getElementById("gradoComandanteep").value;
+        const fecha = document.getElementById("fechaep").value;
+        const [año, mes, dia] = fecha.split("-");
+        const fechaF = `${dia}-${mes}-${año}`;
+        const hora = document.getElementById("horaep").value;
+        const cedulaReal = document.getElementById("cedulaReal").value;
+        const nombre_ciudadano = document.getElementById("nombre_ciudadano").value;
+        const f_nacimiento = document.getElementById("f_nacimiento").value;
+        const lugar_nac = document.getElementById("lugar_nac").value;
+		const t_documento = document.getElementById("t_documento").value;
+		const cedulaErronea = document.getElementById("cedulaErronea").value;
+  
+
+        const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
+dispositivo PDA el día ${fechaF} siendo las ${hora} horas solicitado al ciudadano ${nombre_ciudadano}, identificado con ${t_documento} ${cedulaReal}, nacido el ${f_nacimiento}, 
+en ${lugar_nac}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la ${t_documento}, ${cedulaErronea} al cual le arroja un antecedente 
+positivo, es de anotar que el ciudadano que se encontraba en el sitio al momento de realizar la verificación se encuentra sin novedad.
+
+Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
+
+        document.getElementById("relatp").value = relato;
+      });
+
+    }, 100);
+  }
+  
 </script>
 
 </body>
