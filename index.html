@@ -139,6 +139,28 @@
       });
     });
 	
+	// Carga dinámica del contenido Imei
+    document.querySelectorAll(".submenu a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const url = this.getAttribute("data-url");
+        const contentDiv = document.getElementById("content");
+
+        fetch(url)
+          .then(response => {
+            if (!response.ok) throw new Error("No se pudo cargar el archivo: " + url);
+            return response.text();
+          })
+          .then(html => {
+            contentDiv.innerHTML = html;
+            if (url === "e_imei.html") cargarLogicaRelatoeimei();
+          })
+          .catch(error => {
+            contentDiv.innerHTML = `<p style="color:red;">Error al cargar el contenido: ${error.message}</p>`;
+          });
+      });
+    });
+	
 	
   });
 
