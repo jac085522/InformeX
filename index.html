@@ -179,11 +179,11 @@
         const placaErronea = document.getElementById("placaErronea").value;
 
         const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
-dispositivo PDA el día ${fechaF} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
-clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes 
-a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.
+		dispositivo PDA el día ${fechaF} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${colorv}, 
+		clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes 
+		a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.
 
-Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
+		Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
 
         document.getElementById("relat").value = relato;
       });
@@ -236,6 +236,54 @@ positivo, es de anotar que el ciudadano que se encontraba en el sitio al momento
 Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
 
         document.getElementById("relatp").value = relato;
+      });
+
+    }, 100);
+  }
+  
+  
+  // ✅ Lógica del formulario dinámico e_imei
+  function cargarLogicaRelatoeimei() {
+    setTimeout(() => {
+      const form = document.getElementById("eimeiForm");
+      if (!form) return;
+
+      const fechaInput = document.getElementById('fechaei');
+      const hoy = new Date();
+      const yyyy = hoy.getFullYear();
+      const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+      const dd = String(hoy.getDate()).padStart(2, '0');
+      fechaInput.value = `${yyyy}-${mm}-${dd}`;
+
+      document.getElementById('horaei').value = `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('input', () => {
+          input.value = input.value.toUpperCase();
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const gradoComandante = document.getElementById("gradoComandanteei").value;
+        const fecha = document.getElementById("fechaei").value;
+        const [año, mes, dia] = fecha.split("-");
+        const fechaF = `${dia}-${mes}-${año}`;
+        const hora = document.getElementById("horaei").value;
+        const imeiReal = document.getElementById("imeiReal").value;
+        const marcace = document.getElementById("marcace").value;
+        const referenciace = document.getElementById("referenciace").value;
+		const imeiErroneo = document.getElementById("imeiErroneo").value;
+  
+
+        const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al 
+		dispositivo PDA el día ${fechaF} siendo las ${hora} horas solicitado al IMEI ${imeiReal}, marca ${marcace}, referencia ${referenciace}, sin más datos, me permito 
+		informar que por error de digitacion se solicita antecedentes al IMEI ${imeiErroneo}, al cual le arroja un antecedente positivo, es de anotar que el dispositivo celular 
+		que poseia el ciudadano al momento de realizarle la respectiva verificación se encontraba sin novedad.
+
+		Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
+
+        document.getElementById("relati").value = relato;
       });
 
     }, 100);
