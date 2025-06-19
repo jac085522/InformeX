@@ -336,8 +336,7 @@
 
       document.getElementById('horat').value = `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
 
-alert("¡Hola! Este es un mensaje de alerta.");
-      document.querySelectorAll('input[type="text"]').forEach(input => {
+ document.querySelectorAll('input[type="text"]').forEach(input => {
         input.addEventListener('input', () => {
           input.value = input.value.toUpperCase();
 
@@ -346,6 +345,9 @@ alert("¡Hola! Este es un mensaje de alerta.");
 
 
 form.addEventListener("submit", function (event) {
+
+alert("¡Hola! Este es un mensaje de alerta.");
+     
         event.preventDefault();
   
         const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fechaF} siendo las ${horat} horas solicitado al vehiculo de placas ${placat}, marca ${marcat}, linea ${lineat}, color ${colort}, numero de chasis ${chasist}, numero de motor ${motort}, clase de vehiculo ${claset}, tipo de servicio ${tipoServiciot}, sin mas datos, me permito informar que el vehiculo antes en mencion fue recuperado y mediante acta de entrega emanada por la fiscalia ${fiscalt} ${tipofiscaliat} hace la entrega de la misma al propietario, es de anotar que dicho vehiculo se encontraba reportado mediante numero de SPOA ${spoat}.
