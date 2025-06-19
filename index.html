@@ -342,23 +342,6 @@
         });
       });
 
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const gradoComandante = document.getElementById("gradoComandanteft").value;
-        const fecha = document.getElementById("fechat").value;
-        const [año, mes, dia] = fecha.split("-");
-        const fechaF = `${dia}-${mes}-${año}`;
-        const hora = document.getElementById("horat").value;
-        const placat = document.getElementById("placat").value;
-        const marcat = document.getElementById("marcat").value;
-        const lineat = document.getElementById("lineat").value;
-  
-
-        const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fechaF} siendo las ${horat} horas solicitado al vehiculo de placas ${placat}, marca ${marcat}, linea ${lineat}, color ${colort}, numero de chasis ${chasist}, numero de motor ${motort}, clase de vehiculo ${claset}, tipo de servicio ${tipoServiciot}, sin mas datos, me permito informar que el vehiculo antes en mencion fue recuperado y mediante acta de entrega emanada por la fiscalia ${fiscalt} ${tipofiscaliat} hace la entrega de la misma al propietario, es de anotar que dicho vehiculo se encontraba reportado mediante numero de SPOA ${spoat}.
-		Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
-
-        document.getElementById("relatft").value = relato;
-      });
 
     }, 100);
   }
