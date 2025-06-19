@@ -175,7 +175,7 @@
           })
           .then(html => {
             contentDiv.innerHTML = html;
-            if (url === "e_imei.html") cargarLogicaRelatoeimei();
+            if (url === "t_vehiculo_fiscalia.html") cargarLogicaRelatotvehiculof();
           })
           .catch(error => {
             contentDiv.innerHTML = `<p style="color:red;">Error al cargar el contenido: ${error.message}</p>`;
@@ -316,6 +316,57 @@
 		Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
 
         document.getElementById("relati").value = relato;
+      });
+
+    }, 100);
+  }
+  
+  // ✅ Lógica del formulario dinámico vehiculofiscalia
+  function cargarLogicaRelatotvehiculof() {
+    setTimeout(() => {
+      const form = document.getElementById("ftvehiculoForm");
+      if (!form) return;
+
+      const fechaInput = document.getElementById('fechat');
+      const hoy = new Date();
+      const yyyy = hoy.getFullYear();
+      const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+      const dd = String(hoy.getDate()).padStart(2, '0');
+      fechaInput.value = `${yyyy}-${mm}-${dd}`;
+
+      document.getElementById('horat').value = `${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`;
+
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('input', () => {
+          input.value = input.value.toUpperCase();
+        });
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const gradoComandante = document.getElementById("gradoComandanteft").value;
+        const fecha = document.getElementById("fechat").value;
+        const [año, mes, dia] = fecha.split("-");
+        const fechaF = `${dia}-${mes}-${año}`;
+        const hora = document.getElementById("horat").value;
+        const placat = document.getElementById("placat").value;
+        const marcat = document.getElementById("marcat").value;
+        const lineat = document.getElementById("lineat").value;
+		const colort = document.getElementById("colort").value;
+		const claset = document.getElementById("claset").value;
+		const tipoServiciot = document.getElementById("tipoServiciot").value;
+		const chasist = document.getElementById("chasist").value;
+		const motort = document.getElementById("motort").value;
+		const chasist = document.getElementById("chasist").value;
+		const fiscalt = document.getElementById("fiscalt").value;
+		const tipofiscaliat = document.getElementById("tipofiscaliat").value;
+		const spoat = document.getElementById("spoat").value;
+  
+
+        const relato = `De manera atenta y respetuosa me dirijo a mi ${gradoComandante} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fechaF} siendo las ${horat} horas solicitado al vehiculo de placas ${placat}, marca ${marcat}, linea ${lineat}, color ${colort}, numero de chasis ${chasist}, numero de motor ${motort}, clase de vehiculo ${claset}, tipo de servicio ${tipoServiciot}, sin mas datos, me permito informar que el vehiculo antes en mencion fue recuperado y mediante acta de entrega emanada por la fiscalia ${fiscalt} ${tipofiscaliat} hace la entrega de la misma al propietario, es de anotar que dicho vehiculo se encontraba reportado mediante numero de SPOA ${spoat}.
+		Lo anterior para conocimiento de mi ${gradoComandante} y demás fines estime pertinentes.`;
+
+        document.getElementById("relatft").value = relato;
       });
 
     }, 100);
